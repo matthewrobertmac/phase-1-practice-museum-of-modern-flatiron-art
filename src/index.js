@@ -1,5 +1,9 @@
 let commentsSection = document.getElementById("comments-section")
 let form = document.getElementById("comment-form")
+let button = document.getElementById("buy-tickets-button")
+let ticketsBought = document.getElementById("tickets-bought")
+let buyTickets = 0;
+
 
 
 fetch("http://localhost:3000/current-exhibits")
@@ -8,6 +12,7 @@ fetch("http://localhost:3000/current-exhibits")
     firstData = (data[0]),
     addComments(firstData),
     populateData(data[0])
+    
   })
 
 form.addEventListener("submit", (e) => {
@@ -38,3 +43,18 @@ function addComments(firstData) {
     commentsSection.append(oldComment)
   })
 }
+
+
+function interactiveButton() {
+  button.addEventListener("click", () => {
+    buyTickets++
+    ticketsBought.textContent = `${buyTickets} Tickets Bought`
+    console.log(ticketsBought.textContent)
+  }
+  )}
+
+interactiveButton();
+/*
+When someone clicks the `buy-tickets-button` it updates the `tickets-bought` element so that it increments the number of tickets. Make sure to retain the text, it shouldn't just say `1` but instead say `1 Tickets Bought`.
+*/
+
